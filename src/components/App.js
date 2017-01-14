@@ -4,8 +4,8 @@ import React from 'react';
 */
 
 export default class App extends React.Component {
-  render() {
-    // build user list
+  constructor(props) {
+    super(props);
     const users = [];
     for (let i=1; i<10; i++) {
       users.push({
@@ -14,7 +14,11 @@ export default class App extends React.Component {
         job: 'Employee ' + i,
       });
     }
-
+    this.state = {
+      users: users,
+    };
+  }
+  render() {
     return(
       <table>
         <thead>
@@ -27,7 +31,7 @@ export default class App extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {users.map((user, index) => {
+          {this.state.users.map((user, index) => {
             return(
               <tr key={user.id}>
                 <td>#{user.id}</td>
