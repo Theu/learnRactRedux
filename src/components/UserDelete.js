@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 
 
 class UserDelete extends React.Component {
+  constructor(props){
+    super(props);
+    this.modalDeleteHide = this.modalDeleteHide.bind(this);
+    this.modalDelete = this.modalDelete.bind(this);
+  }
   render() {
     return(
       <Modal show={this.props.modal_delete.show}>
@@ -14,11 +19,29 @@ class UserDelete extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Footer>
-          <Button>No</Button>
-          <Button bsStyle="primary">Yes</Button>
+          <Button
+          onClick={this.modalDeleteHide}>No</Button>
+          <Button bsStyle="primary"
+          onClick={this.modalDelete}>Yes</Button>
         </Modal.Footer>
       </Modal>
     );
+  }
+  modalDeleteHide(event) {
+    // inside the method we MUST disptch (trasferire comunicare) un'azione
+    this.props.dispatch({
+      type: 'users.modalDeleteHide',
+    });
+  }
+  modalDelete(event) {
+    console.log('DELETE! DELETE!');
+    this.props.dispatch({
+      type: 'users.modalDelete',
+      id: this.props.modal_delete.id,
+    });
+    this.props.dispatch({
+      type: 'users.modalDeleteHide',
+    });
   }
 }
 // export the connected class

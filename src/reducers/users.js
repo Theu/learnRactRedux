@@ -10,6 +10,23 @@ export default function users(state = {}, action) {
                 username: action.username,
             }
             return new_state;
+        case 'users.modalDeleteHide':
+            new_state = JSON.parse(JSON.stringify(state));
+            new_state.modal.list_delete = {
+                show: false,
+                id: 0,
+                username: '',
+            }
+            return new_state;
+        case 'users.modalDelete':
+            new_state = JSON.parse(JSON.stringify(state));
+            for (const index in new_state.list) {
+              if (new_state.list[index].id === action.id) {
+                new_state.list.splice(index, 1);
+                break;
+              }
+            }
+            return new_state;
         default:
             //no action so show the default state
         return state;
