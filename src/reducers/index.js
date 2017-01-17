@@ -1,4 +1,11 @@
-export function reducers(state, action) {
-  //no action past
-  return state;
-}
+import  { combineReducers } from 'redux';
+
+import users from './users';
+
+/*
+* Reducers
+*/
+
+export const reducers = combineReducers({
+  users: users,
+});

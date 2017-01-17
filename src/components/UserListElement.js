@@ -54,4 +54,4 @@ UserListElement.propTypes = {
 }
 // export connected class
 
-export default connect() (UserListElement)
+export default connect()(UserListElement);
